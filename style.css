@@ -2,32 +2,24 @@
     padding: 0;
     margin: 0;
     font-family: Caveat, sans-serif;
-}
-
-html {
-    min-height: 100vh;
-    width: 100vw;
-}
-
-body {
-    height: 100%;
-    width: 100%;
+    overflow: hidden;
 }
 
 main {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    /* min-width: 1600px; */
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(12, 1fr);
     background-image: url(src/bg-cells.jpg);
-    background-size: cover;
-    /* background-repeat: repeat; */
+    background-size: contain;
+    background-repeat: repeat-y;
 }
 
 .bg_img {
     /* width: 100%; */
     /* height: 100vh; */
-    object-fit: fill;
+    object-fit: cover;
     grid-area: 1 / 1 / -1 / 13;
     z-index: -1;
 }
@@ -37,7 +29,7 @@ main {
 }
 
 .hangman_pic {
-width: 100%;
+    width: 100%;
 }
 
 #test_button {
@@ -52,7 +44,7 @@ width: 100%;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-evenly;
-    min-width: 500px;
+    /* min-width: 500px; */
 }
 
 .letter {
@@ -71,24 +63,28 @@ width: 100%;
     grid-area: -2 / 2 / -4 / 6;
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: 600px;
+    justify-content: space-around;
+    /* min-width: 600px; */
 }
 
 .missing_letter {
     text-align: center;
     height: 100%;
-    width: 15%;
+    width: 17%;
     font-size: 4em;
     position: relative;
     color: black;
 }
 
 .missing_letter::after {
-    content: url(src/hangman_pics/letter_base.png);
-    position: absolute;
-    top: 20%;
-    right: 5%;
+    font-size: 2px;
+    background-image: url(src/hangman_pics/letter_base.png);
+    background-size: 100% 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100%; 
+    height: 20px;
+    content:"";
 }
 
 .wrong_letter {
@@ -97,4 +93,41 @@ width: 100%;
 
 .right_letter {
     color:#001fff;
+}
+@media (max-width: 768px) {
+    * {
+        font-size: 1em;
+    }
+
+    main {
+        height: 100vh;
+        width: 100vw;
+        background-image: url(src/bg-mobile.jpg);
+        background-size: contain;
+        background-repeat: repeat;
+    }
+    .hangman_div {
+        /* background-color: #001fff; */
+        grid-area: 2 / 2 / 6 / -2;
+
+    }
+
+    .hangman_pic {
+        height: 100%;
+        width: auto;
+    }
+
+    .missing_word {
+        grid-area: 6 / 2 / 7 / -2;
+    }
+
+    .missing_letter {
+        font-size: 2em;
+    }
+    
+    .alphabet {
+        grid-area: -5 / 2 / -2 / -2;
+        font-size: 2em;
+    }
+
 }

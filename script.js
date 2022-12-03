@@ -22,6 +22,8 @@ function hangmanDrawing () {
     console.log(hangmanProgress);
 }
 
+// Letter checkiing except hint letters 
+
 function letterChecking() {
     for (let i = 1; i < missingLettersArr.length - 1; i++) {
         if (chosenLetterBuffer == missingLettersArr[i].textContent) {
@@ -34,8 +36,6 @@ function letterChecking() {
 
 
 // testButton.addEventListener("click", hangmanDrawing);
-
-// console.log(choiceLetterArr[20].value);
 
 // Added clicking on every letter 
 
@@ -60,4 +60,3 @@ for (let i = 1; i < missingLettersArr.length - 1; i++) {
 }
 
 
-// Letter checkiing except hint letters 
