@@ -1,12 +1,12 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: Caveat, sans-serif;
 }
 
 html {
     min-height: 100vh;
     width: 100vw;
-    font-family: Caveat, sans-serif;
 }
 
 body {
@@ -19,9 +19,9 @@ main {
     width: 100%;
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(12, 1fr);
-    /* background-image: url(src/bg-cells.jpg);
-    background-size: contain;
-    background-repeat: no-repeat; */
+    background-image: url(src/bg-cells.jpg);
+    background-size: cover;
+    /* background-repeat: repeat; */
 }
 
 .bg_img {
@@ -33,7 +33,7 @@ main {
 }
 
 .hangman_div {
-    grid-area: 2 / 2 / 8 / 6;
+    grid-area: 2 / 2 / 7 / 5;
 }
 
 .hangman_pic {
@@ -41,7 +41,7 @@ width: 100%;
 }
 
 #test_button {
-    grid-area: -3 / 2 / -1 / 4;
+    grid-area: 3 / 6 / 5 / 8;
 }
 
 .alphabet {
@@ -52,6 +52,7 @@ width: 100%;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-evenly;
+    min-width: 500px;
 }
 
 .letter {
@@ -63,4 +64,37 @@ width: 100%;
     text-align: center;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.missing_word {
+    grid-area: -2 / 2 / -4 / 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 600px;
+}
+
+.missing_letter {
+    text-align: center;
+    height: 100%;
+    width: 15%;
+    font-size: 4em;
+    position: relative;
+    color: black;
+}
+
+.missing_letter::after {
+    content: url(src/hangman_pics/letter_base.png);
+    position: absolute;
+    top: 20%;
+    right: 5%;
+}
+
+.wrong_letter {
+    color: red;
+}
+
+.right_letter {
+    color:#001fff;
 }
