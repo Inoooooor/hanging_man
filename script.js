@@ -5,7 +5,7 @@ const missingLettersArr = document.getElementsByClassName("missing_letter");
 let hangmanProgress = 0;
 let chosenLetterBuffer = 0;
 let lettersMatch = 0;
-let missingWordArr = "ПИЗДЕЦ";
+let missingWordArr = "ПАРАГРАФ";
 
 const testChoiceLetterArr = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩъыьЭЮЯ"
 
@@ -47,13 +47,17 @@ function letterChecking() {
     return 0;
 }
 
-// Comparing all missing letters with alphabet 
+// Comparing all missing letters with alphabet and adding if found
 
 function testLetterChecking() {
+    let letterMatchFlag = 0;
     for (let i = 1; i < missingWordArr.length - 1; i++) {
-        if (chosenLetterBuffer == missingWordArr[i]) return true;
+        if (chosenLetterBuffer == missingWordArr[i]) {
+            missingLettersArr[i].innerHTML = chosenLetterBuffer;
+            letterMatchFlag = 1;
+        }
     }
-    return false;
+    return letterMatchFlag ? true : false;
 }
 
 
@@ -63,7 +67,7 @@ function testLetterChecking() {
 
 for (let i = 0; i < choiceLetterArr.length; i++) choiceLetterArr[i].addEventListener("click", () => {
     chosenLetterBuffer = testChoiceLetterArr[i];
-    if (letterChecking()) {
+    if (testLetterChecking()) {
         choiceLetterArr[i].classList.add("right_letter");
         choiceLetterArr[i].setAttribute("disabled", "disabled");
     } else {
