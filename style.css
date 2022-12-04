@@ -127,6 +127,14 @@ main {
     cursor: pointer;
 }
 
+.game_win_pic {
+    position: absolute;
+    /* top: 20%; */
+    left: 5%;
+    bottom: 0;
+    width: 40%;
+}
+
 @media (max-width: 768px) {
     * {
         font-size: 1em;
@@ -164,4 +172,27 @@ main {
         align-content: flex-end;
     }
 
+    .game_over_words {
+        width: 80%;
+        font-size: 5em;
+    }
+
+    .try_again_button {
+        font-size: 4em;
+        width: 70%;
+    }
+
+    .game_win_pic {
+        width: 65%;
+        left: 10%;
+    }
+
+    .game_over_pic {
+        width: 70%;
+        top: 55%;
+    }
+
+    .game_over_words {
+        top: 35%;
+    }
 }

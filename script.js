@@ -84,7 +84,17 @@ for (let i = 0; i < missingWordArr.length; i++) {
 
 const mainElement = document.getElementById("main");
 
-// Making game end in progress... 
+// Reload button function for end screens
+
+let reloadButton = () => {
+    const tryAgainButton = document.createElement("button");
+    tryAgainButton.classList = "try_again_button";
+    tryAgainButton.textContent = "Try Again";
+    tryAgainButton.setAttribute("onclick", "window.location.reload()");
+    mainElement.append(tryAgainButton);
+}
+
+// End scenarios
 
 let gameOver = () => {
     if (hangmanProgress == 5) {
@@ -101,23 +111,45 @@ let gameOver = () => {
         gameOverWords.textContent = "Game Over";
         mainElement.append(gameOverWords);
         
-        const tryAgainButton = document.createElement("button");
-        tryAgainButton.classList = "try_again_button";
-        tryAgainButton.textContent = "Try Again";
-        tryAgainButton.setAttribute("onclick", "window.location.reload()");
-        mainElement.append(tryAgainButton);
+        reloadButton();
     }
 }
 
-// Comparing missing letters with initial word's letters 
+// Comparing filled letters with initial word's letters 
 
 let gameWin = () => {
     let winFlag = 0;
     for (let i = 0; i < missingWordArr.length; i++) {
         missingLettersArr[i].textContent == missingWordArr[i] ? winFlag++ : "";
     }
-    console.log(winFlag);
-    if (winFlag == missingWordArr.length) console.log("Victory!");
+    if (winFlag == missingWordArr.length) {
+        mainElement.innerHTML = "";
+        const gameWinPic = document.createElement("img");
+        gameWinPic.classList = "game_win_pic";
+        gameWinPic.src = "src/winner.png";
+        gameWinPic.alt = "Ricardo Milos";
+        mainElement.append(gameWinPic);
+
+        const gameOverWords = document.createElement("p");
+        gameOverWords.classList = "game_over_words";
+        gameOverWords.textContent = "Красавчик!";
+        mainElement.append(gameOverWords);
+        
+        reloadButton();
+    };
 }
 
+// mainElement.innerHTML = "";
+// const gameOverPic = document.createElement("img");
+//         gameOverPic.classList = "game_over_pic";
+//         gameOverPic.src = "src/game_over.png";
+//         gameOverPic.alt = "Dead smile";
+//         mainElement.append(gameOverPic);
+        
+//         const gameOverWords = document.createElement("p");
+//         gameOverWords.classList = "game_over_words";
+//         gameOverWords.textContent = "Game Over";
+//         mainElement.append(gameOverWords);
+        
+//         reloadButton();
 // console.log(missingLettersArr[3].textContent);
