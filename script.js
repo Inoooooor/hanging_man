@@ -43,7 +43,7 @@ function testLetterChecking() {
     }
     return letterMatchFlag ? true : false;
 }
-// console.log(missingLettersArr.outerText);
+
 
 // Added clicking on every letter and disabling button after clicking
 
@@ -53,6 +53,7 @@ for (let i = 0; i < choiceLetterArr.length; i++) {
         if (testLetterChecking()) {
             choiceLetterArr[i].classList.add("right_letter");
             choiceLetterArr[i].setAttribute("disabled", "disabled");
+            gameWin();
         } else {
             choiceLetterArr[i].classList.add("wrong_letter");
             choiceLetterArr[i].setAttribute("disabled", "disabled");
@@ -88,18 +89,18 @@ const mainElement = document.getElementById("main");
 let gameOver = () => {
     if (hangmanProgress == 5) {
         mainElement.innerHTML = "";
-
+        
         const gameOverPic = document.createElement("img");
         gameOverPic.classList = "game_over_pic";
         gameOverPic.src = "src/game_over.png";
         gameOverPic.alt = "Dead smile";
         mainElement.append(gameOverPic);
-
+        
         const gameOverWords = document.createElement("p");
         gameOverWords.classList = "game_over_words";
         gameOverWords.textContent = "Game Over";
         mainElement.append(gameOverWords);
-
+        
         const tryAgainButton = document.createElement("button");
         tryAgainButton.classList = "try_again_button";
         tryAgainButton.textContent = "Try Again";
@@ -108,4 +109,15 @@ let gameOver = () => {
     }
 }
 
+// Comparing missing letters with initial word's letters 
 
+let gameWin = () => {
+    let winFlag = 0;
+    for (let i = 0; i < missingWordArr.length; i++) {
+        missingLettersArr[i].textContent == missingWordArr[i] ? winFlag++ : "";
+    }
+    console.log(winFlag);
+    if (winFlag == missingWordArr.length) console.log("Victory!");
+}
+
+// console.log(missingLettersArr[3].textContent);
