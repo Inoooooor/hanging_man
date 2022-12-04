@@ -8,7 +8,7 @@ let missingWordArr = "ПАРАГРАФ";
 
 const testChoiceLetterArr = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩъыьЭЮЯ"
 
-// Filling alphabet
+// Filling alphabet in HTML
 
 const alphabetDiv = document.getElementById("alphabet");
 for (let i = 0; i < testChoiceLetterArr.length; i++) {
@@ -19,11 +19,8 @@ for (let i = 0; i < testChoiceLetterArr.length; i++) {
     alphabetDiv.append(letterButton);
 }
 
-// Making game end in progress... 
 
-let gameOver = () => {
-    if (hangmanProgress == 5) window.stop();
-}
+// Picture drawing function 
 
 function hangmanDrawing () {
     hangmanProgress++;
@@ -46,22 +43,24 @@ function testLetterChecking() {
     }
     return letterMatchFlag ? true : false;
 }
+// console.log(missingLettersArr.outerText);
 
 // Added clicking on every letter and disabling button after clicking
 
-for (let i = 0; i < choiceLetterArr.length; i++) choiceLetterArr[i].addEventListener("click", () => {
-    chosenLetterBuffer = testChoiceLetterArr[i];
-    if (testLetterChecking()) {
-        choiceLetterArr[i].classList.add("right_letter");
-        choiceLetterArr[i].setAttribute("disabled", "disabled");
-    } else {
-        choiceLetterArr[i].classList.add("wrong_letter");
-        choiceLetterArr[i].setAttribute("disabled", "disabled");
-        hangmanDrawing();
-        gameOver();
-    }
-    console.log(chosenLetterBuffer);
-});
+for (let i = 0; i < choiceLetterArr.length; i++) {
+    choiceLetterArr[i].addEventListener("click", () => {
+        chosenLetterBuffer = testChoiceLetterArr[i];
+        if (testLetterChecking()) {
+            choiceLetterArr[i].classList.add("right_letter");
+            choiceLetterArr[i].setAttribute("disabled", "disabled");
+        } else {
+            choiceLetterArr[i].classList.add("wrong_letter");
+            choiceLetterArr[i].setAttribute("disabled", "disabled");
+            hangmanDrawing();
+            gameOver();
+        }
+    })
+};
 
 // Drawing missing letters 
 
@@ -79,3 +78,34 @@ for (let i = 0; i < missingWordArr.length; i++) {
         missingWordDiv.append(span);
     }
 }
+
+// Deleting everything on page 
+
+const mainElement = document.getElementById("main");
+
+// Making game end in progress... 
+
+let gameOver = () => {
+    if (hangmanProgress == 5) {
+        mainElement.innerHTML = "";
+
+        const gameOverPic = document.createElement("img");
+        gameOverPic.classList = "game_over_pic";
+        gameOverPic.src = "src/game_over.png";
+        gameOverPic.alt = "Dead smile";
+        mainElement.append(gameOverPic);
+
+        const gameOverWords = document.createElement("p");
+        gameOverWords.classList = "game_over_words";
+        gameOverWords.textContent = "Game Over";
+        mainElement.append(gameOverWords);
+
+        const tryAgainButton = document.createElement("button");
+        tryAgainButton.classList = "try_again_button";
+        tryAgainButton.textContent = "Try Again";
+        tryAgainButton.setAttribute("onclick", "window.location.reload()");
+        mainElement.append(tryAgainButton);
+    }
+}
+
+
