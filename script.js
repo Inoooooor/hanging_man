@@ -5,8 +5,21 @@ const missingLettersArr = document.getElementsByClassName("missing_letter");
 let hangmanProgress = 0;
 let chosenLetterBuffer = 0;
 let lettersMatch = 0;
+let missingWordArr = "ПИЗДЕЦ";
 
-console.log(choiceLetterArr.length);
+const testChoiceLetterArr = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩъыьЭЮЯ"
+
+// Filling alphabet\
+
+const alphabetDiv = document.getElementById("alphabet");
+for (let i = 0; i < testChoiceLetterArr.length; i++) {
+    let letterButton = document.createElement("button");
+    letterButton.classList = "letter";
+    letterButton.value = testChoiceLetterArr[i];
+    letterButton.innerHTML = testChoiceLetterArr[i];
+    alphabetDiv.append(letterButton);
+}
+
 
 let gameOver = () => {
     if (hangmanProgress == 5) window.stop();
@@ -34,13 +47,22 @@ function letterChecking() {
     return 0;
 }
 
+// Comparing all missing letters with alphabet 
+
+function testLetterChecking() {
+    for (let i = 1; i < missingWordArr.length - 1; i++) {
+        if (chosenLetterBuffer == missingWordArr[i]) return true;
+    }
+    return false;
+}
+
 
 // testButton.addEventListener("click", hangmanDrawing);
 
-// Added clicking on every letter 
+// Added clicking on every letter and disabling button after clicking
 
 for (let i = 0; i < choiceLetterArr.length; i++) choiceLetterArr[i].addEventListener("click", () => {
-    chosenLetterBuffer = choiceLetterArr[i].value;
+    chosenLetterBuffer = testChoiceLetterArr[i];
     if (letterChecking()) {
         choiceLetterArr[i].classList.add("right_letter");
         choiceLetterArr[i].setAttribute("disabled", "disabled");
@@ -53,10 +75,28 @@ for (let i = 0; i < choiceLetterArr.length; i++) choiceLetterArr[i].addEventList
     console.log(chosenLetterBuffer);
 });
 
-// Hiding missing letters 
+// Drawing missing letters 
 
-for (let i = 1; i < missingLettersArr.length - 1; i++) {
-    missingLettersArr[i].style.color = "transparent";
+const missingWordDiv = document.getElementById("missing_word");
+for (let i = 0; i < missingWordArr.length; i++) {
+    if ( i == 0 || i == missingWordArr.length - 1) {
+        let span = document.createElement("span");
+        span.classList = "missing_letter";
+        span.innerHTML = missingWordArr[i];
+        missingWordDiv.append(span);
+    } else {
+        let span = document.createElement("span");
+        span.classList = "missing_letter";
+        span.innerHTML = "";
+        missingWordDiv.append(span);
+    }
 }
 
+// Hiding missing letters 
 
+// for (let i = 1; i < missingLettersArr.length - 1; i++) {
+//     missingLettersArr[i].style.color = "transparent";
+// }
+
+
+// choiceLetterArr[2].setAttribute("disabled", "disabled"); 
