@@ -4,12 +4,11 @@ const choiceLetterArr = document.getElementsByClassName("letter");
 const missingLettersArr = document.getElementsByClassName("missing_letter");
 let hangmanProgress = 0;
 let chosenLetterBuffer = 0;
-let lettersMatch = 0;
 let missingWordArr = "ПАРАГРАФ";
 
 const testChoiceLetterArr = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩъыьЭЮЯ"
 
-// Filling alphabet\
+// Filling alphabet
 
 const alphabetDiv = document.getElementById("alphabet");
 for (let i = 0; i < testChoiceLetterArr.length; i++) {
@@ -20,6 +19,7 @@ for (let i = 0; i < testChoiceLetterArr.length; i++) {
     alphabetDiv.append(letterButton);
 }
 
+// Making game end in progress... 
 
 let gameOver = () => {
     if (hangmanProgress == 5) window.stop();
@@ -32,19 +32,6 @@ function hangmanDrawing () {
     else if (hangmanProgress == 3) hangmanPic.src = "src/hangman_pics/body.png";
     else if (hangmanProgress == 4) hangmanPic.src = "src/hangman_pics/hands.png";
     else if (hangmanProgress == 5) hangmanPic.src = "src/hangman_pics/legs.png";
-    console.log(hangmanProgress);
-}
-
-// Letter checkiing except hint letters 
-
-function letterChecking() {
-    for (let i = 1; i < missingLettersArr.length - 1; i++) {
-        if (chosenLetterBuffer == missingLettersArr[i].textContent) {
-            missingLettersArr[i].style.color = "black";
-            return 1;
-        }
-    }
-    return 0;
 }
 
 // Comparing all missing letters with alphabet and adding if found
@@ -59,9 +46,6 @@ function testLetterChecking() {
     }
     return letterMatchFlag ? true : false;
 }
-
-
-// testButton.addEventListener("click", hangmanDrawing);
 
 // Added clicking on every letter and disabling button after clicking
 
@@ -95,12 +79,3 @@ for (let i = 0; i < missingWordArr.length; i++) {
         missingWordDiv.append(span);
     }
 }
-
-// Hiding missing letters 
-
-// for (let i = 1; i < missingLettersArr.length - 1; i++) {
-//     missingLettersArr[i].style.color = "transparent";
-// }
-
-
-// choiceLetterArr[2].setAttribute("disabled", "disabled"); 
