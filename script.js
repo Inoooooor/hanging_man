@@ -4,7 +4,7 @@ const choiceLetterArr = document.getElementsByClassName("letter");
 const missingLettersArr = document.getElementsByClassName("missing_letter");
 let hangmanProgress = 0;
 let chosenLetterBuffer = 0;
-let missingWordArr = "ПАРАГРАФ";
+let missingWordArr = "ИНСТРУМЕНТ";
 
 const testChoiceLetterArr = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩъыьЭЮЯ"
 
@@ -43,6 +43,7 @@ function testLetterChecking() {
     }
     return letterMatchFlag ? true : false;
 }
+
 
 
 // Added clicking on every letter and disabling button after clicking
@@ -85,6 +86,7 @@ for (let i = 0; i < missingWordArr.length; i++) {
 const mainElement = document.getElementById("main");
 
 // Reload button function for end screens
+
 
 let reloadButton = () => {
     const tryAgainButton = document.createElement("button");
